@@ -1,17 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            margin-left: 10px;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        footer {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Create an Account on Class 7<sup>th</sup> C</h1>
+    <h1>Create an Account on HW Hub</h1>
     <form method="post">
         <p>
-            Username: <input type="text" name="user" required><br>
-            Password: <input type="password" name="password" required><br>
+            <label for="user">Username: </label>
+            <input type="text" id="user" name="user" required><br><br>
+            
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" required><br><br>
+            
             <input type="submit" name="sub" value="Sign Up">
             <a href="login.html">Main Page</a>
         </p>
     </form>
+    <footer>
+        <p>&copy; 2024 My Project. Released under the MIT License.</p>
+        <p><a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
+    </footer>
 </body>
 </html>
