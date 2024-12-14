@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
+    <title>Register</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
+            background-color: #121212;
+            color: #E0E0E0;
         }
         form {
             margin: auto;
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #333;
             border-radius: 5px;
             width: 300px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #1E1E1E;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
         input[type="text"], input[type="password"] {
             width: 90%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #555;
             border-radius: 5px;
+            background-color: #2E2E2E;
+            color: #E0E0E0;
         }
         input[type="submit"] {
             background-color: #007BFF;
@@ -39,34 +44,70 @@
         }
         a {
             text-decoration: none;
-            color: #007BFF;
-            margin-left: 10px;
+            color: #4DA6FF;
         }
         a:hover {
-            color: #0056b3;
-        }
-        footer {
-            margin-top: 20px;
+            color: #80CFFF;
         }
     </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <h1>Create an Account on HW Hub</h1>
-    <form method="post">
-        <p>
-            <label for="user">Username: </label>
-            <input type="text" id="user" name="user" required><br><br>
-            
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password" required><br><br>
-            
-            <input type="submit" name="sub" value="Sign Up">
-            <a href="login.html">Main Page</a>
-        </p>
+    <h1>Register</h1>
+    <form id="register-form" style="display: none;">
+        <label for="user">Username:</label>
+        <input type="text" id="user" name="user" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <!-- reCAPTCHA widget -->
+        <div class="g-recaptcha" data-sitekey="6Lc5sZsqAAAAAAKa1wJY_gWyEt1GFwEDsYKnOKxN"></div><br>
+        
+        <input type="submit" value="Register">
+        <p>Already have an account? <a href="login.html">Login</a></p>
     </form>
-    <footer>
-        <p>&copy; 2024 My Project. Released under the MIT License.</p>
-        <p><a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
-    </footer>
+
+    <script>
+        // Development password
+        const devPassword = "dev1234";
+
+        // Ask for the development password
+        const userInput = prompt("Enter the development password to access this page:");
+
+        if (userInput === devPassword) {
+            document.getElementById("register-form").style.display = "block";
+        } else {
+            alert("Access denied. Closing the tab...");
+            window.close(); // Attempt to close the tab
+            if (!window.closed) {
+                alert("Tab closure is blocked by your browser.");
+                window.location.href = "about:blank"; // Redirect to a blank page
+            }
+        }
+
+        // Handle registration
+        document.getElementById("register-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("user").value;
+            const password = document.getElementById("password").value;
+
+            // Check if reCAPTCHA is completed
+            if (grecaptcha.getResponse() === "") {
+                alert("Please complete the reCAPTCHA.");
+                return;
+            }
+
+            if (localStorage.getItem(username)) {
+                alert("Username already exists. Please choose a different username.");
+            } else if (username && password) {
+                localStorage.setItem(username, password);
+                alert("Account created successfully! Redirecting to login page...");
+                window.location.href = "login.html";
+            } else {
+                alert("Please fill in all fields.");
+            }
+        });
+    </script>
 </body>
 </html>
