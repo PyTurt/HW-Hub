@@ -10,21 +10,26 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            background-color: #121212;
+            color: #E0E0E0;
         }
         form {
             margin: auto;
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #333;
             border-radius: 5px;
             width: 300px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #1E1E1E;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
         input[type="text"], input[type="password"] {
             width: 90%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #555;
             border-radius: 5px;
+            background-color: #2E2E2E;
+            color: #E0E0E0;
         }
         input[type="submit"] {
             background-color: #007BFF;
@@ -37,27 +42,69 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
-        footer {
-            margin-top: 20px;
+        a {
+            text-decoration: none;
+            color: #4DA6FF;
+        }
+        a:hover {
+            color: #80CFFF;
         }
     </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <h1>Welcome to Homework Hub</h1>
-    <form id="login-form">
-        <p>
-            <label for="user">Username: </label>
-            <input type="text" id="user" name="user" required><br><br>
-            
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password" required><br><br>
-        </p>
-        <input type="submit" value="Log in">
+    <h1>Login</h1>
+    <form id="login-form" style="display: none;">
+        <label for="user">Username:</label>
+        <input type="text" id="user" name="user" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <!-- reCAPTCHA widget -->
+        <div class="g-recaptcha" data-sitekey="6Lc5sZsqAAAAAAKa1wJY_gWyEt1GFwEDsYKnOKxN"></div><br>
+        <input type="submit" value="Login">
+        <p>Don't have an account? <a href="register.html">Register</a></p>
     </form>
+    <script>
+        // Development password
+        const devPassword = "dev1234";
 
-    <footer>
-        <p>&copy; 2024 My Project. Released under the MIT License.</p>
-        <p><a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
-    </footer>
+        // Ask for the development password
+        const userInput = prompt("Enter the development password to access this page:");
+
+        if (userInput === devPassword) {
+            // Show the form if the password is correct
+            document.getElementById("login-form").style.display = "block";
+        } else {
+            alert("Access denied. Closing the tab...");
+            window.close(); // Attempt to close the tab
+            if (!window.closed) {
+                // If the browser prevents tab closure
+                alert("Tab closure is blocked by your browser.");
+                window.location.href = "about:blank"; // Redirect to a blank page
+            }
+        }
+
+        // Handle login
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("user").value;
+            const password = document.getElementById("password").value;
+
+            // Check if reCAPTCHA is completed
+            if (grecaptcha.getResponse() === "") {
+                alert("Please complete the reCAPTCHA.");
+                return;
+            }
+
+            // Simulate login process
+            if (localStorage.getItem(username) === password) {
+                alert("Login successful! Redirecting...");
+                window.location.href = "user.html";
+            } else {
+                alert("Invalid username or password.");
+            }
+        });
+    </script>
 </body>
 </html>
