@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
             background-color: #121212;
             color: #E0E0E0;
         }
+
         form {
             margin: auto;
             padding: 20px;
@@ -22,7 +24,9 @@
             background-color: #1E1E1E;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
-        input[type="text"], input[type="password"] {
+
+        input[type="text"],
+        input[type="password"] {
             width: 90%;
             padding: 10px;
             margin: 10px 0;
@@ -31,6 +35,7 @@
             background-color: #2E2E2E;
             color: #E0E0E0;
         }
+
         input[type="submit"] {
             background-color: #007BFF;
             color: white;
@@ -39,53 +44,45 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
         a {
             text-decoration: none;
             color: #4DA6FF;
         }
+
         a:hover {
             color: #80CFFF;
         }
     </style>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
+
 <body>
     <h1>Login</h1>
-    <form id="login-form" style="display: none;">
+
+    <form id="login-form">
         <label for="user">Username:</label>
         <input type="text" id="user" name="user" required><br><br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required><br><br>
         <!-- reCAPTCHA widget -->
         <div class="g-recaptcha" data-sitekey="6Lc5sZsqAAAAAAKa1wJY_gWyEt1GFwEDsYKnOKxN"></div><br>
+        <label for="acceptTC">
+            <input type="checkbox" id="acceptTC" name="acceptTC" required>
+            I accept the <a herf="term.html">terms and conditions</a>
+        </label><br><br>
         <input type="submit" value="Login">
+        
         <p>Don't have an account? <a href="register.html">Register</a></p>
     </form>
+
     <script>
-        // Development password
-        const devPassword = "dev1234";
-
-        // Ask for the development password
-        const userInput = prompt("Enter the development password to access this page:");
-
-        if (userInput === devPassword) {
-            // Show the form if the password is correct
-            document.getElementById("login-form").style.display = "block";
-        } else {
-            alert("Access denied. Closing the tab...");
-            window.close(); // Attempt to close the tab
-            if (!window.closed) {
-                // If the browser prevents tab closure
-                alert("Tab closure is blocked by your browser.");
-                window.location.href = "about:blank"; // Redirect to a blank page
-            }
-        }
-
         // Handle login
-        document.getElementById("login-form").addEventListener("submit", function(event) {
+        document.getElementById("login-form").addEventListener("submit", function (event) {
             event.preventDefault();
 
             const username = document.getElementById("user").value;
@@ -107,4 +104,5 @@
         });
     </script>
 </body>
+
 </html>
