@@ -73,7 +73,7 @@
         <div class="g-recaptcha" data-sitekey="6Lc5sZsqAAAAAAKa1wJY_gWyEt1GFwEDsYKnOKxN"></div><br>
         <label for="acceptTC">
             <input type="checkbox" id="acceptTC" name="acceptTC" required>
-            I accept the <a herf="term.html">terms and conditions</a>
+            I accept the <a href="term.html">terms and conditions</a>
         </label><br><br>
         <input type="submit" value="Login">
         
@@ -81,6 +81,17 @@
     </form>
 
     <script>
+        // Show confirmation for contribution when the page is loaded
+        window.onload = function() {
+            const contribute = confirm("Would you like to contribute?");
+            
+            if (contribute) {
+                // Redirect to fund.html if the user clicks "OK"
+                window.location.href = "fund.html";
+            }
+            // If they click "Cancel", just stay on the current page (do nothing)
+        };
+
         // Handle login
         document.getElementById("login-form").addEventListener("submit", function (event) {
             event.preventDefault();

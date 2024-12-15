@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribute</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #E0E0E0;
+        }
+        .container {
+            margin: auto;
+            padding: 40px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            width: 350px;
+            background-color: #1E1E1E;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        input[type="number"], input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #2E2E2E;
+            color: #E0E0E0;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        a {
+            text-decoration: none;
+            color: #4DA6FF;
+        }
+        a:hover {
+            color: #80CFFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contribute to Our Cause</h1>
+    <div class="container">
+        <p>Your contribution will help us improve our services. Please enter the amount you'd like to donate.</p>
+        <form id="contribute-form">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="amount">Amount to Contribute:</label>
+            <input type="number" id="amount" name="amount" required min="1"><br><br>
+
+            <input type="submit" value="Contribute">
+        </form>
+        <p>Thank you for your generosity!</p>
+        <p><a href="login.html">Back to Home</a></p>
+    </div>
+
+    <script>
+        // Handle contribution form submission
+        document.getElementById("contribute-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const amount = document.getElementById("amount").value;
+
+            if (name && amount && amount > 0) {
+                alert("Thank you for your contribution of $" + amount + ", " + name + "!");
+                // Here you can add the functionality to process the contribution (e.g., sending data to a server)
+                // For now, we'll just redirect to a thank you page
+            } else {
+                alert("Please enter a valid name and contribution amount.");
+            }
+        });
+    </script>
+</body>
+</html>
