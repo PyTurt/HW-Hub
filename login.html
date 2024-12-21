@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
             background-color: #121212;
             color: #E0E0E0;
         }
-
         form {
             margin: auto;
             padding: 20px;
@@ -24,9 +22,7 @@
             background-color: #1E1E1E;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
-
-        input[type="text"],
-        input[type="password"] {
+        input[type="text"], input[type="password"] {
             width: 90%;
             padding: 10px;
             margin: 10px 0;
@@ -35,7 +31,6 @@
             background-color: #2E2E2E;
             color: #E0E0E0;
         }
-
         input[type="submit"] {
             background-color: #007BFF;
             color: white;
@@ -44,23 +39,20 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
-
         a {
             text-decoration: none;
             color: #4DA6FF;
         }
-
         a:hover {
             color: #80CFFF;
         }
     </style>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="app.js" defer></script>
 </head>
-
 <body>
     <h1>Login</h1>
 
@@ -79,41 +71,5 @@
         
         <p>Don't have an account? <a href="register.html">Register</a></p>
     </form>
-
-    <script>
-        // Show confirmation for contribution when the page is loaded
-        window.onload = function() {
-            const contribute = confirm("Would you like to contribute?");
-            
-            if (contribute) {
-                // Redirect to fund.html if the user clicks "OK"
-                window.location.href = "fund.html";
-            }
-            // If they click "Cancel", just stay on the current page (do nothing)
-        };
-
-        // Handle login
-        document.getElementById("login-form").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const username = document.getElementById("user").value;
-            const password = document.getElementById("password").value;
-
-            // Check if reCAPTCHA is completed
-            if (grecaptcha.getResponse() === "") {
-                alert("Please complete the reCAPTCHA.");
-                return;
-            }
-
-            // Simulate login process
-            if (localStorage.getItem(username) === password) {
-                alert("Login successful! Redirecting...");
-                window.location.href = "user.html";
-            } else {
-                alert("Invalid username or password.");
-            }
-        });
-    </script>
 </body>
-
 </html>
